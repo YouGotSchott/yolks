@@ -352,6 +352,16 @@ if [[ ${CLEAR_CACHE} == "1" ]]; then
     done
 fi
 
+# Clear mpmissions folder, if specified
+if [[ ${DELETE_MISSIONS} == "1" ]]; then
+    echo -e "\n${GREEN}[STARTUP]: ${CYAN}Clearing mpmissions folder${NC}"
+    for missionFile in ./mpmissions/*
+    do
+        [[ $missionFile == static_* ]] && continue
+        rm -f $missionFile
+    done
+fi
+
 # Check if basic.cfg exists, and download if not (Arma really doesn't like it missing for some reason)
 if [[ ! -f ./basic.cfg ]]; then
     echo -e "\n${YELLOW}[STARTUP_WARN]: Basic Network Configuration file \"${CYAN}basic.cfg${YELLOW}\" is missing!${NC}"
