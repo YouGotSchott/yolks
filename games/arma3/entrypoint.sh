@@ -188,6 +188,9 @@ if [[ -z ${VALIDATE_SERVER} ]]; then # VALIDATE_SERVER was not in the previous v
     exit 1
 fi
 
+# Symlink all folders in /mnt to the container directory
+for dir in /mnt/*; do ln -s "$dir" /home/container/"$(basename "$dir")"; done
+
 # Collect and parse all specified mods
 if [[ -n ${MODIFICATIONS} ]] && [[ ${MODIFICATIONS} != *\; ]]; then # Add manually specified mods to the client-side mods list, while checking for trailing semicolon
     CLIENT_MODS="${MODIFICATIONS};"
