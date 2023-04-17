@@ -361,12 +361,7 @@ fi
 
 # Clear mpmissions folder, if specified
 if [[ ${DELETE_MISSIONS} == "1" ]]; then
-    echo -e "\n${GREEN}[STARTUP]: ${CYAN}Clearing mpmissions folder${NC}"
-    for missionFile in ./mpmissions/*
-    do
-        [[ $missionFile == static_* ]] && continue
-        rm -f $missionFile
-    done
+    find /home/container/mpmissions/ -type f ! -name 'static_*' -delete
 fi
 
 # Check if basic.cfg exists, and download if not (Arma really doesn't like it missing for some reason)
