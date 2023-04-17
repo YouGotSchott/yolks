@@ -361,6 +361,7 @@ fi
 
 # Clear mpmissions folder, if specified
 if [[ ${DELETE_MISSIONS} == "1" ]]; then
+    echo -e "\n${GREEN}[STARTUP]: ${CYAN}Clearing mpmissions folder...${NC}"
     find /home/container/mpmissions/ -type f ! -name 'static_*' -delete
 fi
 
