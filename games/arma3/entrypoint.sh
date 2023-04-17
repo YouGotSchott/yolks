@@ -403,7 +403,13 @@ fi
 # Start the Server
 echo -e "\n${GREEN}[STARTUP]:${NC} Starting server with the following startup command:"
 echo -e "${CYAN}${modifiedStartup}${NC}\n"
-${modifiedStartup} 2>> logs/arma3server_$(date +'%Y-%m-%d_%H-%M-%S').rpt
+
+# Only pipe logs to file if logs directory exists
+if test -L "/home/container/logs" && test -d "/home/container/logs"; then
+    ${modifiedStartup} 2>> logs/arma3server_$(date +'%Y-%m-%d_%H-%M-%S').rpt
+else
+    ${modifiedStartup}
+fi
 
 if [ $? -ne 0 ]; then
     echo -e "\n${RED}PTDL_CONTAINER_ERR: There was an error while attempting to run the start command.${NC}\n"
