@@ -190,7 +190,7 @@ fi
 
 # Symlink all folders in /mnt to the container directory
 for dir in /mnt/*; do
-  if [ ! -e "/home/container/$(basename "$dir")" ]; then
+  if [ -d "$dir" ] && [ ! -e "/home/container/$(basename "$dir")" ]; then
     ln -s "$dir" /home/container/"$(basename "$dir")"
   fi
 done
