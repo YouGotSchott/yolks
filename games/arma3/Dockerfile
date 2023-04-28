@@ -28,7 +28,12 @@ RUN         dpkg --add-architecture i386 \
                 libnss-wrapper \
                 libnss-wrapper:i386 \
                 libtbb2 \
-                libtbb2:i386
+                libtbb2:i386 \
+                gcc-9 \
+                g++-9 \
+                libstdc++6 \
+                zlib1g \
+                libcurl4-openssl-dev
 
 ## Configure locale
 RUN         update-locale lang=en_US.UTF-8 \
